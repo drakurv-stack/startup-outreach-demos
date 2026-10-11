@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Velum Labs — Request Access to RouteKit</title>
+<meta name="description" content="RouteKit by Velum Labs: the control plane for coding intelligence. Request early access." />
+<style>
+  :root { --bg:#080b0a; --surface:#101413; --text:#f2f5f4; --muted:#9fb0aa; --accent:#3ddc97; --accent-soft:rgba(61,220,151,0.12); --border:rgba(255,255,255,0.10); --error:#ff7a7a; --success:#5fd68a; --radius:14px; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .glow { position:fixed; inset:0; pointer-events:none; z-index:0; background:radial-gradient(600px 320px at 50% -60px, rgba(61,220,151,0.16), transparent 70%),radial-gradient(500px 300px at 85% 110%, rgba(61,220,151,0.08), transparent 70%); }
+  .wrap { position:relative; z-index:1; max-width:680px; margin:0 auto; padding:0 20px; }
+  nav { display:flex; align-items:center; justify-content:space-between; padding:22px 0; }
+  .brand { font-weight:700; font-size:1.1rem; letter-spacing:0.02em; text-decoration:none; color:var(--text); }
+  .brand span { color:var(--accent); }
+  .nav-cta { text-decoration:none; color:var(--text); font-size:0.9rem; font-weight:600; background:var(--accent-soft); border:1px solid rgba(61,220,151,0.45); padding:9px 18px; border-radius:999px; }
+  .hero { text-align:center; padding:64px 0 40px; }
+  .eyebrow { display:inline-block; font-size:0.78rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); border:1px solid rgba(61,220,151,0.4); border-radius:999px; padding:6px 16px; margin-bottom:26px; background:var(--accent-soft); }
+  h1 { font-size:2.5rem; line-height:1.15; letter-spacing:-0.02em; margin-bottom:18px; }
+  h1 .grad { background:linear-gradient(100deg,#a7f3d0,#3ddc97 60%,#22b07d); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .sub { color:var(--muted); font-size:1.08rem; max-width:540px; margin:0 auto 34px; }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:28px 24px; text-align:left; box-shadow:0 24px 60px rgba(0,0,0,0.45); }
+  .card h2 { font-size:1.15rem; margin-bottom:6px; }
+  .card p { color:var(--muted); font-size:0.95rem; margin-bottom:18px; }
+  form { display:flex; flex-direction:column; gap:12px; }
+  label { font-size:0.82rem; font-weight:600; color:var(--muted); }
+  .row { display:flex; flex-direction:column; gap:12px; }
+  input[type="email"] { flex:1; font-size:1rem; color:var(--text); background:#0a0d0c; border:1px solid var(--border); border-radius:10px; padding:14px 16px; outline:none; }
+  input[type="email"]:focus { border-color:var(--accent); }
+  input[type="email"][aria-invalid="true"] { border-color:var(--error); }
+  button[type="submit"] { font-size:1rem; font-weight:700; color:#06110c; cursor:pointer; background:linear-gradient(100deg,#6ff2b6,#3ddc97); border:none; border-radius:10px; padding:14px 22px; }
+  button[type="submit"]:disabled { opacity:0.6; cursor:wait; }
+  .msg { font-size:0.9rem; min-height:1.4em; }
+  .msg.error { color:var(--error); }
+  .msg.success { color:var(--success); }
+  .fine { font-size:0.8rem; color:var(--muted); opacity:0.8; }
+  .points { display:flex; flex-direction:column; gap:10px; margin-top:36px; text-align:left; }
+  .point { display:flex; gap:12px; align-items:flex-start; background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:12px; padding:16px 18px; font-size:0.94rem; color:var(--muted); }
+  .point strong { color:var(--text); display:block; font-size:0.98rem; }
+  .point .tick { color:var(--accent); font-weight:700; flex-shrink:0; margin-top:2px; }
+  footer { text-align:center; padding:40px 0 48px; color:var(--muted); font-size:0.85rem; }
+  footer a { color:var(--accent); text-decoration:none; }
+  @media (min-width:560px) { .row { flex-direction:row; } button[type="submit"] { white-space:nowrap; } h1 { font-size:3.2rem; } .hero { padding:84px 0 48px; } }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#"><span>◆</span> Velum Labs</a>
+    <a class="nav-cta" href="#access">Request access</a>
+  </nav>
+  <section class="hero">
+    <span class="eyebrow">Backed by Y Combinator · W26</span>
+    <h1>The control plane <span class="grad">for coding intelligence.</span></h1>
+    <p class="sub">RouteKit pools your coding subscriptions and API providers, then routes every task to the right model. Request access and we will onboard you.</p>
+    <div class="card" id="access">
+      <h2>Request early access</h2>
+      <p>One email when your workspace is ready. No spam, ever.</p>
+      <form id="access-form" novalidate>
+        <label for="email">Work email</label>
+        <div class="row">
+          <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required aria-describedby="form-msg" />
+          <button type="submit" id="submit-btn">Request access</button>
+        </div>
+        <div class="msg" id="form-msg" role="status" aria-live="polite"></div>
+        <p class="fine">By requesting you agree to be contacted about early access. Unsubscribe anytime.</p>
+      </form>
+    </div>
+    <div class="points">
+      <div class="point"><span class="tick">✓</span><span><strong>Pool subscriptions</strong>Stop paying for five overlapping coding tools.</span></div>
+      <div class="point"><span class="tick">✓</span><span><strong>Smart routing</strong>Every task goes to the model that handles it best.</span></div>
+      <div class="point"><span class="tick">✓</span><span><strong>One control plane</strong>Usage, cost, and policy in a single dashboard.</span></div>
+    </div>
+  </section>
+  <footer>© 2026 Velum Labs · <a href="mailto:founders@velum-labs.com">founders@velum-labs.com</a><br /><span style="opacity:0.6">Redesign concept — demo only, not affiliated with Velum Labs.</span></footer>
+</div>
+<script>
+(function(){var form=document.getElementById('access-form');var email=document.getElementById('email');var btn=document.getElementById('submit-btn');var msg=document.getElementById('form-msg');
+function setMsg(t,k){msg.textContent=t;msg.className='msg'+(k?' '+k:'');}
+form.addEventListener('submit',function(e){e.preventDefault();var v=email.value.trim();var valid=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+if(!valid){email.setAttribute('aria-invalid','true');setMsg('Please enter a valid email address.','error');email.focus();return;}
+email.removeAttribute('aria-invalid');btn.disabled=true;btn.textContent='Requesting…';setMsg('','');
+setTimeout(function(){btn.disabled=false;btn.textContent='Request access';form.reset();setMsg("Request received — we'll be in touch soon.",'success');},900);});
+email.addEventListener('input',function(){email.removeAttribute('aria-invalid');if(msg.classList.contains('error'))setMsg('','');});})();
+</script>
+</body>
+</html>
