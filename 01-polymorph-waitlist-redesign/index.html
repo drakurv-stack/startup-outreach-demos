@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Polymorph — Join the Waitlist</title>
+<meta name="description" content="Polymorph is building secure infrastructure for the age of software abundance. Join the waitlist for early access." />
+<style>
+  :root { --bg:#0a0a10; --surface:#12121a; --text:#f4f4f6; --muted:#a3a3b3; --accent:#7c7cf4; --accent-soft:rgba(124,124,244,0.14); --border:rgba(255,255,255,0.10); --error:#ff7a7a; --success:#5fd68a; --radius:14px; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .glow { position:fixed; inset:0; pointer-events:none; z-index:0; background:radial-gradient(600px 320px at 50% -60px, rgba(124,124,244,0.22), transparent 70%),radial-gradient(500px 300px at 85% 110%, rgba(124,124,244,0.10), transparent 70%); }
+  .wrap { position:relative; z-index:1; max-width:680px; margin:0 auto; padding:0 20px; }
+  nav { display:flex; align-items:center; justify-content:space-between; padding:22px 0; }
+  .brand { font-weight:700; font-size:1.1rem; letter-spacing:0.02em; text-decoration:none; color:var(--text); }
+  .brand span { color:var(--accent); }
+  .nav-cta { text-decoration:none; color:var(--text); font-size:0.9rem; font-weight:600; background:var(--accent-soft); border:1px solid rgba(124,124,244,0.45); padding:9px 18px; border-radius:999px; }
+  .hero { text-align:center; padding:64px 0 40px; }
+  .eyebrow { display:inline-block; font-size:0.78rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); border:1px solid rgba(124,124,244,0.4); border-radius:999px; padding:6px 16px; margin-bottom:26px; background:var(--accent-soft); }
+  h1 { font-size:2.5rem; line-height:1.15; letter-spacing:-0.02em; margin-bottom:18px; }
+  h1 .grad { background:linear-gradient(100deg,#a5a5ff,#7c7cf4 60%,#5a5ae0); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .sub { color:var(--muted); font-size:1.08rem; max-width:520px; margin:0 auto 34px; }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:28px 24px; text-align:left; box-shadow:0 24px 60px rgba(0,0,0,0.45); }
+  .card h2 { font-size:1.15rem; margin-bottom:6px; }
+  .card p { color:var(--muted); font-size:0.95rem; margin-bottom:18px; }
+  form { display:flex; flex-direction:column; gap:12px; }
+  label { font-size:0.82rem; font-weight:600; color:var(--muted); }
+  .row { display:flex; flex-direction:column; gap:12px; }
+  input[type="email"] { flex:1; font-size:1rem; color:var(--text); background:#0c0c13; border:1px solid var(--border); border-radius:10px; padding:14px 16px; outline:none; }
+  input[type="email"]:focus { border-color:var(--accent); }
+  input[type="email"][aria-invalid="true"] { border-color:var(--error); }
+  button[type="submit"] { font-size:1rem; font-weight:700; color:#fff; cursor:pointer; background:linear-gradient(100deg,#8a8af7,#6363ee); border:none; border-radius:10px; padding:14px 22px; }
+  button[type="submit"]:disabled { opacity:0.6; cursor:wait; }
+  .msg { font-size:0.9rem; min-height:1.4em; }
+  .msg.error { color:var(--error); }
+  .msg.success { color:var(--success); }
+  .fine { font-size:0.8rem; color:var(--muted); opacity:0.8; }
+  .founders { margin-top:44px; padding:22px; border:1px solid var(--border); border-radius:var(--radius); background:rgba(255,255,255,0.02); font-size:0.92rem; color:var(--muted); text-align:center; }
+  .founders strong { color:var(--text); }
+  footer { text-align:center; padding:40px 0 48px; color:var(--muted); font-size:0.85rem; }
+  footer a { color:var(--accent); text-decoration:none; }
+  @media (min-width:560px) { .row { flex-direction:row; } button[type="submit"] { white-space:nowrap; } h1 { font-size:3.2rem; } .hero { padding:84px 0 48px; } }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#"><span>◆</span> Polymorph</a>
+    <a class="nav-cta" href="#waitlist">Join waitlist</a>
+  </nav>
+  <section class="hero">
+    <span class="eyebrow">Backed by Y Combinator · W26</span>
+    <h1>The age of software abundance <span class="grad">has arrived.</span></h1>
+    <p class="sub">We are building secure infrastructure to bring everyone into it. Get early access — join the waitlist and we will reach out as spots open.</p>
+    <div class="card" id="waitlist">
+      <h2>Get early access</h2>
+      <p>One email when your spot opens. No spam, ever.</p>
+      <form id="waitlist-form" novalidate>
+        <label for="email">Email address</label>
+        <div class="row">
+          <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required aria-describedby="form-msg" />
+          <button type="submit" id="submit-btn">Join waitlist</button>
+        </div>
+        <div class="msg" id="form-msg" role="status" aria-live="polite"></div>
+        <p class="fine">By joining you agree to be contacted about early access. Unsubscribe anytime.</p>
+      </form>
+    </div>
+    <div class="founders">Founded by <strong>Andrew Sy</strong> (ML infra at Scale AI) and <strong>Brendon Go</strong> (founding engineer at Semgrep).</div>
+  </section>
+  <footer>© 2026 Polymorph · <a href="mailto:founders@usepolymorph.com">founders@usepolymorph.com</a><br /><span style="opacity:0.6">Redesign concept — demo only, not affiliated with Polymorph.</span></footer>
+</div>
+<script>
+(function(){var form=document.getElementById('waitlist-form');var email=document.getElementById('email');var btn=document.getElementById('submit-btn');var msg=document.getElementById('form-msg');
+function setMsg(t,k){msg.textContent=t;msg.className='msg'+(k?' '+k:'');}
+form.addEventListener('submit',function(e){e.preventDefault();var v=email.value.trim();var valid=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+if(!valid){email.setAttribute('aria-invalid','true');setMsg('Please enter a valid email address.','error');email.focus();return;}
+email.removeAttribute('aria-invalid');btn.disabled=true;btn.textContent='Joining…';setMsg('','');
+setTimeout(function(){btn.disabled=false;btn.textContent='Join waitlist';form.reset();setMsg("You're on the list — we'll reach out soon.",'success');},900);});
+email.addEventListener('input',function(){email.removeAttribute('aria-invalid');if(msg.classList.contains('error'))setMsg('','');});})();
+</script>
+</body>
+</html>
