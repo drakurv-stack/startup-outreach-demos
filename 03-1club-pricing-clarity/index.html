@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grow Your Brand Online — Pricing concept (1club demo)</title>
+<meta name="description" content="Concept redesign of the 1club Grow Your Brand Online section with clear, consistent website pricing.">
+<style>
+  :root{
+    --bg:#0b0f0c; --panel:#121814; --panel2:#161d17;
+    --lime:#c6f24e; --lime-dark:#9fd12e;
+    --text:#f2f5ec; --muted:#a7b39a; --line:#23301f;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(1200px 600px at 50% -10%, #1a2416 0%, var(--bg) 55%) fixed, var(--bg);
+    color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  header.site{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(11,15,12,.92);backdrop-filter:blur(8px);z-index:10}
+  header.site .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+  .brand{font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+  .brand span{color:var(--lime)}
+  .pill{font-size:.75rem;color:#0b0f0c;background:var(--lime);border-radius:999px;padding:4px 12px;font-weight:700}
+  main{padding:56px 0 24px}
+  .eyebrow{color:var(--lime);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+  h1{font-size:clamp(1.9rem,5vw,3rem);line-height:1.15;letter-spacing:-.02em;margin:12px 0 10px}
+  .lede{color:var(--muted);max-width:640px;font-size:1.05rem}
+  .fix-note{margin:22px 0 0;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--lime);
+    border-radius:12px;padding:16px 18px;font-size:.95rem;color:var(--muted)}
+  .fix-note strong{color:var(--text)}
+  .grid{display:grid;gap:18px;margin-top:30px;grid-template-columns:1fr}
+  @media(min-width:760px){.grid{grid-template-columns:1fr 1fr}}
+  .card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);
+    border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:14px;position:relative}
+  .card.highlight{border-color:var(--lime);box-shadow:0 0 0 1px var(--lime),0 18px 50px -18px rgba(198,242,78,.35)}
+  .tag{position:absolute;top:-13px;left:22px;background:var(--lime);color:#0b0f0c;font-size:.72rem;
+    font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:4px 12px}
+  .card h2{font-size:1.25rem;letter-spacing:-.01em}
+  .price{font-size:2.4rem;font-weight:800;letter-spacing:-.03em}
+  .price small{font-size:1rem;font-weight:500;color:var(--muted)}
+  .card p.desc{color:var(--muted);font-size:.95rem}
+  ul{list-style:none;display:grid;gap:10px;margin:6px 0 4px}
+  li{font-size:.93rem;color:var(--text);display:flex;gap:10px;align-items:flex-start}
+  li svg{flex:none;margin-top:4px}
+  li.excluded{color:var(--muted);text-decoration:none}
+  li.excluded .x{color:#e0655f}
+  .cta{margin-top:auto;display:inline-block;text-align:center;background:var(--lime);color:#0b0f0c;
+    font-weight:800;border-radius:12px;padding:13px 18px;text-decoration:none;transition:transform .15s ease}
+  .cta:hover{transform:translateY(-2px)}
+  .cta.ghost{background:transparent;color:var(--lime);border:1.5px solid var(--lime)}
+  .banner{margin-top:26px;border:1px dashed var(--line);border-radius:14px;padding:18px;color:var(--muted);font-size:.92rem}
+  .banner strong{color:var(--lime)}
+  .faq{margin:48px 0 0}
+  .faq h2{font-size:1.4rem;margin-bottom:14px}
+  .qa{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:12px}
+  .qa h3{font-size:1rem;margin-bottom:8px}
+  .qa p{color:var(--muted);font-size:.94rem}
+  .qa p strong{color:var(--text)}
+  footer{border-top:1px solid var(--line);margin-top:56px;padding:26px 0 40px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="brand">1club<span>.</span></div>
+    <div class="pill">Pricing concept demo</div>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <div class="eyebrow">Grow your brand online</div>
+    <h1>Your gym's website, priced clearly.</h1>
+    <p class="lede">Get a high-performance website built for your brand — bundled with the Grow plan, or as a standalone site. One clear price for each.</p>
+    <div class="fix-note">
+      <strong>What this demo fixes:</strong> on the live pricing page, the Gym Website is listed as
+      "49/month" in one card while the FAQ says "standalone Gym Website for $99/month" — and the
+      add-on prices are missing the <strong>$</strong> sign used everywhere else. This concept
+      separates the <em>bundled</em> and <em>standalone</em> options and keeps currency formatting consistent.
+    </div>
+    <div class="grid">
+      <div class="card highlight">
+        <div class="tag">Bundled with Grow</div>
+        <h2>Gym Website</h2>
+        <div class="price">$49<small>/month</small></div>
+        <p class="desc">No setup fees — included with the Grow plan. Designed for your brand, set up by us.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3L13 4.5" stroke="#c6f24e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>SEO &amp; AI-search optimized from day one</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3L13 4.5" stroke="#c6f24e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Marketing automation, reputation management &amp; dynamic pricing included</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3L13 4.5" stroke="#c6f24e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Launch-ready with your branding</li>
+        </ul>
+        <a class="cta" href="#">Book a demo</a>
+      </div>
+      <div class="card">
+        <div class="tag">Standalone option</div>
+        <h2>Gym Website — Standalone</h2>
+        <div class="price">$99<small>/month</small></div>
+        <p class="desc">Only want a website? Get the same high-performance site without the Grow marketing stack.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3L13 4.5" stroke="#c6f24e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>All website features included</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3L13 4.5" stroke="#c6f24e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>SEO &amp; AI-search optimized from day one</li>
+          <li class="excluded"><span class="x">X</span>&nbsp;Marketing automation, reputation management &amp; dynamic pricing not included</li>
+        </ul>
+        <a class="cta ghost" href="#">Get the website only</a>
+      </div>
+    </div>
+    <div class="banner">
+      <strong>Consistent formatting:</strong> every price now uses the <strong>$</strong> sign — $49/mo,
+      $99/mo, matching the $63 / $239 / $369 plan prices. No more guessing whether "49/month" means the same thing.
+    </div>
+    <section class="faq">
+      <h2>FAQ — corrected entry</h2>
+      <div class="qa">
+        <h3>What if I only want a website?</h3>
+        <p>You have two options. <strong>Bundled with Grow: $49/month</strong> — the website plus marketing automation, reputation management, and dynamic pricing. <strong>Standalone: $99/month</strong> — all website features without the Grow marketing stack.</p>
+      </div>
+    </section>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    Concept demo only — not affiliated with 1club. Built to demonstrate the pricing-clarity fix; prices shown are proposals, 1club sets their own.
+    <br>Demo 03 in the <a href="../" style="color:var(--lime)">startup-outreach-demos</a> series by Arpit Chauhan.
+  </div>
+</footer>
+</body>
+</html>
