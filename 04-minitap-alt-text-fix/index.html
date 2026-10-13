@@ -177,7 +177,7 @@ function render(){
     sr.innerHTML =
       `<div class="sr-line sr-nav">heading "Loved by QA teams"</div>` +
       logos.map(l=>`<div class="sr-line sr-say">"${l.fixed}"</div>`).join('') +
-      `<div class="sr-line sr-say">heading "What teams say"</div>` +
+      `<div class="sr-line sr-nav">heading "What teams say"</div>` +
       testis.map(t=>`<div class="sr-line sr-say">"${t.fixed}"</div><div class="sr-line sr-nav">${t.quote}</div>`).join('') +
       `<div class="sr-line sr-say">6 images, 6 announced. Every brand in the room gets named.</div>`;
   }
