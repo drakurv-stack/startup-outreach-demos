@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accessibility fix concept — alt text for images (Minitap demo)</title>
+<meta name="description" content="Concept demo: fixing empty image alt attributes on minitap.ai — an interactive before/after screen-reader simulation.">
+<style>
+  :root{
+    --bg:#12105D; --bg2:#0c0a3f; --panel:#1b1866; --panel2:#24207e;
+    --accent:#a78bfa; --accent2:#c4b5fd; --text:#f4f2ff; --muted:#b9b3e6;
+    --line:#38328f; --good:#4ade80; --bad:#f87171; --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(1100px 550px at 50% -10%, #251f7a 0%, var(--bg) 55%) fixed, var(--bg);
+    color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1024px;margin:0 auto;padding:0 20px}
+  .banner{background:#0a0830;border-bottom:1px solid var(--line);text-align:center;
+    font-size:.8rem;color:var(--muted);padding:8px 16px}
+  .banner strong{color:var(--accent2)}
+  header.site{position:sticky;top:0;background:rgba(18,16,93,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);z-index:10}
+  header.site .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+  .brand{font-weight:800;font-size:1.3rem;letter-spacing:-.02em}
+  .brand span{color:var(--accent)}
+  .pill{font-size:.75rem;color:#12105D;background:var(--accent2);border-radius:999px;padding:4px 12px;font-weight:700}
+  main{padding:56px 0 24px}
+  .eyebrow{color:var(--accent);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+  h1{font-size:clamp(1.9rem,4.5vw,2.9rem);line-height:1.15;letter-spacing:-.03em;margin-bottom:16px;max-width:20ch}
+  h1 .hl{color:var(--accent)}
+  .lede{color:var(--muted);font-size:1.08rem;max-width:62ch;margin-bottom:28px}
+  .stat-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0 40px}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .stat .num{font-size:2rem;font-weight:800;letter-spacing:-.02em}
+  .stat .num.bad{color:var(--bad)} .stat .num.good{color:var(--good)}
+  .stat p{color:var(--muted);font-size:.92rem;margin-top:6px}
+  h2{font-size:1.45rem;letter-spacing:-.02em;margin:40px 0 14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-bottom:16px}
+  .card p{color:var(--muted)}
+  .card p code, .lede code{color:var(--accent2);background:#0d0b45;padding:1px 7px;border-radius:6px;font-size:.92em}
+  .toggle-bar{display:flex;gap:10px;margin:18px 0;flex-wrap:wrap}
+  .toggle-bar button{flex:1;min-width:140px;cursor:pointer;border:1px solid var(--line);background:var(--bg2);
+    color:var(--text);border-radius:12px;padding:12px 16px;font-weight:700;font-size:.95rem;transition:all .2s}
+  .toggle-bar button[aria-pressed="true"]{background:var(--accent2);color:#12105D;border-color:var(--accent2)}
+  .demo-stage{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .stage-label{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .stage-label .badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.72rem;margin-left:8px}
+  .badge.before{background:rgba(248,113,113,.15);color:var(--bad);border:1px solid var(--bad)}
+  .badge.after{background:rgba(74,222,128,.12);color:var(--good);border:1px solid var(--good)}
+  .logo-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+  .logo-cell{background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:14px 6px;text-align:center}
+  .logo-cell img{width:52px;height:52px;border-radius:12px;display:block;margin:0 auto 8px}
+  .alt-tag{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.68rem;background:#0d0b45;
+    border-radius:6px;padding:4px 8px;display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .alt-tag.empty{color:var(--bad);border:1px solid rgba(248,113,113,.4)}
+  .alt-tag.fixed{color:var(--good);border:1px solid rgba(74,222,128,.4)}
+  .testis{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .testi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+  .testi img{width:48px;height:48px;border-radius:50%;flex-shrink:0}
+  .testi blockquote{font-size:.9rem;color:var(--text)}
+  .testi cite{display:block;margin-top:8px;font-style:normal;font-size:.78rem;color:var(--muted)}
+  .sr-panel{margin-top:22px;background:#0d0b45;border:1px solid var(--line);border-radius:12px;padding:18px}
+  .sr-panel h3{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .sr-line{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;padding:6px 0;border-bottom:1px solid rgba(56,50,143,.5)}
+  .sr-line:last-child{border-bottom:0}
+  .sr-skip{color:var(--bad)} .sr-say{color:var(--good)}
+  .sr-nav{color:var(--muted)}
+  .checklist{list-style:none;margin-top:8px}
+  .checklist li{padding:10px 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:.95rem}
+  .checklist li:last-child{border-bottom:0}
+  .checklist li strong{color:var(--text)}
+  footer{margin:56px 0 32px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+  footer a{color:var(--accent2)}
+  @media (max-width:640px){
+    .stat-row{grid-template-columns:1fr}
+    .logo-row{grid-template-columns:repeat(2,1fr)}
+    .testis{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="banner"><strong>CONCEPT DEMO</strong> — not affiliated with Minitap. Built to show a fix, not to impersonate.</div>
+<header class="site">
+  <div class="wrap">
+    <div class="brand">mini<span>tap</span></div>
+    <div class="pill">a11y fix concept</div>
+  </div>
+</header>
+<main class="wrap">
+  <div class="eyebrow">Accessibility audit · verified 2026-10-13</div>
+  <h1>Your site's images are <span class="hl">invisible</span> to screen readers</h1>
+  <p class="lede">On <code>https://www.minitap.ai/</code>, <strong>125 of 144 &lt;img&gt; tags</strong> ship with an empty <code>alt=""</code> attribute (counted in the raw HTML). That includes customer logos, testimonial avatars and feature screenshots — every one of them is silently skipped by assistive tech, and invisible to image search. The fix takes an afternoon; this demo shows exactly what it changes.</p>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="num bad">125 / 144</div>
+      <p>images with empty <code>alt=""</code> on the homepage today</p>
+    </div>
+    <div class="stat">
+      <div class="num good">0 / 144</div>
+      <p>the target after the fix — every meaningful image described</p>
+    </div>
+  </div>
+  <h2>Try it: what a screen reader hears</h2>
+  <div class="card">
+    <p>A recreated slice of a customer-logo + testimonial section (illustrative placeholders, not real customers). Toggle <strong>Before</strong> to hear it as it is today, then <strong>After</strong> with descriptive alt text applied.</p>
+    <div class="toggle-bar" role="group" aria-label="Before or after">
+      <button id="btn-before" aria-pressed="true">Before — alt=""</button>
+      <button id="btn-after" aria-pressed="false">After — descriptive alt</button>
+    </div>
+    <div class="demo-stage">
+      <div class="stage-label">Customer logos <span class="badge before" id="logo-badge">BEFORE</span></div>
+      <div class="logo-row" id="logo-row"></div>
+      <div class="stage-label">Testimonials <span class="badge before" id="testi-badge">BEFORE</span></div>
+      <div class="testis" id="testi-row"></div>
+      <div class="sr-panel" aria-live="polite">
+        <h3>Screen-reader readout</h3>
+        <div id="sr-lines"></div>
+      </div>
+    </div>
+  </div>
+  <h2>The fix, as a checklist</h2>
+  <div class="card">
+    <ul class="checklist">
+      <li><strong>Customer logos:</strong> <code>alt="Acme Mobile logo"</code> — name the company, drop the word "image".</li>
+      <li><strong>Testimonial avatars:</strong> <code>alt="Priya Nair, QA lead"</code> — person + role; the quote text stays in the markup, not the alt.</li>
+      <li><strong>Feature screenshots:</strong> one-sentence summary of what the screenshot shows.</li>
+      <li><strong>Decorative icons/dividers:</strong> keep <code>alt=""</code> — intentionally empty so screen readers skip them (this is the one correct use).</li>
+      <li><strong>Add a lint rule</strong> (e.g. eslint <code>jsx-a11y/alt-text</code>) so no new image ships without an alt decision.</li>
+    </ul>
+  </div>
+  <footer>
+    Concept demo only — not affiliated with Minitap. The issue (125 of 144 images with empty alt) was observed in the raw HTML of <a href="https://www.minitap.ai/">minitap.ai</a> on 2026-10-13; logo/testimonial content above is illustrative, not Minitap's real customers.
+    Built by <a href="https://github.com/drakurv-stack">Arpit Chauhan</a> — React / TypeScript / Node.js.
+  </footer>
+</main>
+<script>
+const logos = [
+  { bg:"#4f46e5", init:"AM", name:"Acme Mobile", fixed:'Acme Mobile logo' },
+  { bg:"#0ea5e9", init:"NW", name:"Northwind Apps", fixed:'Northwind Apps logo' },
+  { bg:"#f59e0b", init:"SF", name:"Shipfast", fixed:'Shipfast logo' },
+  { bg:"#10b981", init:"QP", name:"QuickPay", fixed:'QuickPay logo' }
+];
+const testis = [
+  { bg:"#8b5cf6", init:"PN", fixed:'Priya Nair, QA lead', quote:'"Regression runs that took a day now finish before lunch."', who:'Priya N. — QA lead (illustrative)' },
+  { bg:"#ec4899", init:"DL", fixed:'Diego Lopez, mobile engineer', quote:'"Mini caught a crash our manual pass missed twice."', who:'Diego L. — mobile engineer (illustrative)' }
+];
+const svg = (bg, init) => "data:image/svg+xml," + encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" width="104" height="104"><rect width="104" height="104" rx="20" fill="${bg}"/><text x="52" y="62" font-family="Arial" font-size="34" font-weight="bold" fill="#fff" text-anchor="middle">${init}</text></svg>`
+);
+let after = false;
+function render(){
+  const lr = document.getElementById('logo-row');
+  lr.innerHTML = logos.map(l =>
+    `<div class="logo-cell"><img src="${svg(l.bg,l.init)}" alt="${after ? l.fixed : ''}"><span class="alt-tag ${after ? 'fixed' : 'empty'}">alt="${after ? l.fixed : ''}"</span></div>`
+  ).join('');
+  const tr = document.getElementById('testi-row');
+  tr.innerHTML = testis.map(t =>
+    `<div class="testi"><img src="${svg(t.bg,t.init)}" alt="${after ? t.fixed : ''}"><div><blockquote>${t.quote}</blockquote><cite>${t.who}</cite></div></div>`
+  ).join('');
+  const badgeCls = after ? 'badge after' : 'badge before';
+  document.getElementById('logo-badge').className = badgeCls;
+  document.getElementById('testi-badge').className = badgeCls;
+  document.getElementById('logo-badge').textContent = after ? 'AFTER' : 'BEFORE';
+  document.getElementById('testi-badge').textContent = after ? 'AFTER' : 'BEFORE';
+  const sr = document.getElementById('sr-lines');
+  if(!after){
+    sr.innerHTML =
+      `<div class="sr-line sr-nav">heading "Loved by QA teams"</div>` +
+      logos.map(()=>`<div class="sr-line sr-skip">skipped — image with no alt text</div>`).join('') +
+      `<div class="sr-line sr-nav">heading "What teams say"</div>` +
+      testis.map(t=>`<div class="sr-line sr-skip">skipped — avatar with no alt text</div><div class="sr-line sr-nav">${t.quote}</div>`).join('') +
+      `<div class="sr-line sr-skip">6 images, 0 announced. Your customers' logos never get heard.</div>`;
+  } else {
+    sr.innerHTML =
+      `<div class="sr-line sr-nav">heading "Loved by QA teams"</div>` +
+      logos.map(l=>`<div class="sr-line sr-say">"${l.fixed}"</div>`).join('') +
+      `<div class="sr-line sr-say">heading "What teams say"</div>` +
+      testis.map(t=>`<div class="sr-line sr-say">"${t.fixed}"</div><div class="sr-line sr-nav">${t.quote}</div>`).join('') +
+      `<div class="sr-line sr-say">6 images, 6 announced. Every brand in the room gets named.</div>`;
+  }
+  document.getElementById('btn-before').setAttribute('aria-pressed', String(!after));
+  document.getElementById('btn-after').setAttribute('aria-pressed', String(after));
+}
+document.getElementById('btn-before').addEventListener('click', ()=>{ after=false; render(); });
+document.getElementById('btn-after').addEventListener('click', ()=>{ after=true; render(); });
+render();
+</script>
+</body>
+</html>
